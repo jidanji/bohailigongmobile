@@ -15,6 +15,8 @@ import SelectorItem from '@/components/SelectorItem'
 
 import { GetData } from '@/serivces/MathDict'
 
+import { SysSettingGetData } from '@/serivces/SysSetting'
+
 
 
 class index extends Component<any, any> {
@@ -51,7 +53,11 @@ class index extends Component<any, any> {
 
   constructor(props: any) {
     super(props);
-    this.state = { zhuanyeDict: [], loading: false }
+    this.state = {
+      zhuanyeDict: [], loading: false,
+      SysBaoMingStatus: 0, danzhaoStatus: false, shengwaiStatus: false, tongzhaoStatus: false, zhongzhuanStatus: false
+
+    }
   }
 
 
@@ -59,17 +65,20 @@ class index extends Component<any, any> {
 
 
   render() {
-    const groupArr = ([{ GroupName: "单招", GroupId: "单招" },
-    { GroupName: "统招", GroupId: "统招" },
-    { GroupName: "中专和五年一贯制", GroupId: "中专和五年一贯制" },
-    { GroupName: "省外招生录入", GroupId: "省外招生录入" }
+    const { SysBaoMingStatus = 0, danzhaoStatus = false, shengwaiStatus = false, tongzhaoStatus = false, zhongzhuanStatus = false } = this.state;
+    
+    const groupArr = ([{ GroupName: "单招", GroupId: "单招", disabled: !(!!SysBaoMingStatus && !!danzhaoStatus) },
+    { GroupName: "统招", GroupId: "统招", disabled: !(!!SysBaoMingStatus && !!tongzhaoStatus) },
+    { GroupName: "中专和五年一贯制", GroupId: "中专和五年一贯制", disabled: !(!!SysBaoMingStatus && !!zhongzhuanStatus) },
+    { GroupName: "省外招生录入", GroupId: "省外招生录入", disabled: !(!!SysBaoMingStatus && !!shengwaiStatus) }
     ]).map(item => {
       return {
-        label: item.GroupName, value: item.GroupId,
+        label: item.GroupName, value: item.GroupId,disabled:item.disabled
       };
     });
 
     const { zhuanyeDict } = this.state;
+
     return (
       <div>
 
@@ -396,7 +405,7 @@ class index extends Component<any, any> {
     );
   }
 
-  async componentDidMount() {
+  getDict = async () => {
     try {
       this.setState({ loading: true })
       let data = await GetData({
@@ -412,7 +421,28 @@ class index extends Component<any, any> {
     finally {
       this.setState({ loading: false })
     }
+  }
 
+  initSysSettingGetData = async () => {
+    try {
+      let data = await SysSettingGetData({ data: {} });
+      const { SysBaoMingStatus, danzhaoStatus, shengwaiStatus, tongzhaoStatus, zhongzhuanStatus } = data;
+      this.setState({
+        SysBaoMingStatus, danzhaoStatus, shengwaiStatus, tongzhaoStatus, zhongzhuanStatus
+      });
+
+    }
+    catch {
+      debugger
+    }
+
+
+  }
+
+
+  async componentDidMount() {
+    this.getDict();
+    this.initSysSettingGetData();
   }
 
 }

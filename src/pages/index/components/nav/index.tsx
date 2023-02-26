@@ -7,6 +7,8 @@ import rili from '@/assets/rili.png'
 
 import tuandui from '@/assets/tuandui.png'
 
+import mima from '@/assets/mima.png'
+
 import shezhi from '@/assets/shezhi.png'
 
 import router from 'umi/router';
@@ -55,7 +57,7 @@ export default class index extends Component<any, any> {
                   </div>
 
                   <div>
-                    开始评测
+                    招生录入
                   </div>
                 </div>
 
@@ -68,7 +70,19 @@ export default class index extends Component<any, any> {
                     }} />
                   </div>
                   <div>
-                    别人评价我
+                    我的招生报表
+                  </div>
+                </div>
+
+
+                <div className='navDiv'>
+                  <div>
+                    <img src={mima} alt="" className='navImg' onClick={() => {
+                      router.push('/EvaluateToMe');
+                    }} />
+                  </div>
+                  <div>
+                    修改密码
                   </div>
                 </div>
 

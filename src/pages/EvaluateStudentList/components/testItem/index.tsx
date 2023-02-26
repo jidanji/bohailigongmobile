@@ -40,7 +40,7 @@ export default class index extends Component<any,any> {
                     <Button size='small' color='primary' fill='none' onClick={() => {
                         router.push('/Start/'+this.props.UserId)
                     }}>
-                        开始评测
+                        招生录入
                     </Button>
                 </div>
             </div>

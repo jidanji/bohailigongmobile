@@ -1,45 +1,48 @@
 @font-face {
-    font-family: 'webfont';
-    font-display: swap;
-    src: url('//at.alicdn.com/t/webfont_uvqihizzlsb.eot');
-    /* IE9*/
-    src: url('//at.alicdn.com/t/webfont_uvqihizzlsb.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
-        url('//at.alicdn.com/t/webfont_uvqihizzlsb.woff2') format('woff2'),
-        url('//at.alicdn.com/t/webfont_uvqihizzlsb.woff') format('woff'),
-        /* chrome、firefox */
-        url('//at.alicdn.com/t/webfont_uvqihizzlsb.ttf') format('truetype'),
-        /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-        url('//at.alicdn.com/t/webfont_uvqihizzlsb.svg#AlibabaPuHuiTiM') format('svg');
-    /* iOS 4.1- */
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('//at.alicdn.com/t/webfont_uvqihizzlsb.eot');
+  /* IE9*/
+  src: url('//at.alicdn.com/t/webfont_uvqihizzlsb.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('//at.alicdn.com/t/webfont_uvqihizzlsb.woff2') format('woff2'),
+    url('//at.alicdn.com/t/webfont_uvqihizzlsb.woff') format('woff'),
+    /* chrome、firefox */ url('//at.alicdn.com/t/webfont_uvqihizzlsb.ttf') format('truetype'),
+    /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+      url('//at.alicdn.com/t/webfont_uvqihizzlsb.svg#AlibabaPuHuiTiM') format('svg');
+  /* iOS 4.1- */
 }
 
 .testItemContainer {
-    padding: 10px 30px;
-    display: flex;
-    font-family: webfont;
-    align-items: center;
-    background-color: #ffffff;
+  position: relative;
+  padding: 30px 30px;
+  display: flex;
+  font-family: webfont;
+  align-items: center;
+  background-color: #ffffff;
 
-    .firstDiv {
-        flex: 1;
-    }
+  .firstDiv {
+    flex: 1;
+  }
 
-    .secondDiv {
-        width: 200px;
-      letter-spacing: 2px;
-    }
+  .secondDiv {
+    width: 200px;
+    letter-spacing: 2px;
+  }
 
-    .steps {
-        font-size: 30px;
-        color: #ccc;
-        min-width: 40px;
-        text-align: left;
-        margin-right: 35px;
-    }
+  .steps {
+    font-size: 55px;
+    color: #ccc;
+    min-width: 40px;
+    text-align: left;
+    margin-right: 35px;
+    position:absolute;
+    top: 15px;
+    right: 20px;
+
+  }
 
   .studentType {
-    font-size: 32px;
+    font-size: 28px;
     color: #2b2b2b;
   }
 
@@ -50,22 +53,18 @@
     letter-spacing: 3px;
   }
 
-    .studentName {
-      font-size: 40px;
-      min-width: 120px;
-      text-align: left;
-      margin-right: 35px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
+  .studentName {
+    font-size: 28px;
+    min-width: 120px;
+    text-align: left;
+    margin-right: 35px;
+    letter-spacing: 2px;
+  }
 
+  .d1,
+  .d2 {
+    margin-bottom: 15px;
+  }
 
-
-    .d1,
-    .d2 {
-        margin-bottom: 15px;
-    }
-
-
-    border-bottom: 2px dashed #ccc;
+  border-bottom: 2px dashed #ccc;
 }

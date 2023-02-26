@@ -5,7 +5,7 @@ import TestItem from './components/testItem';
 import { Empty, Mask, NavBar, SpinLoading } from 'antd-mobile/2x';
 import router from 'umi/router';
 
-import { ToMeGetData } from '@/serivces/CePing';
+import { StudentGetData } from '@/serivces/Students';
 
 import ValidStatus from '@/components/ValidStatus';
 
@@ -54,7 +54,7 @@ class Index extends Component {
   getdata = async () => {
     try {
       this.setState({ loading: true })
-      const data = await ToMeGetData({ data: { draw: 1, start: 0, length: 1000 } });
+      const data = await StudentGetData({ data: { draw: 1, start: 0, length: 1000 } });
       this.setState({ data, loading: false });
     } catch (err) {
       console.log(err);

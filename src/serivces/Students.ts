@@ -13,6 +13,14 @@ export const AddStudent = (options) => {
   })
 }
 
+export const StudentGetData = (options) => {
+
+  return request(`${BaseUrl}/Student/GetData`, {
+    method: 'POST',
+    ...options
+  })
+}
+
  
 
 

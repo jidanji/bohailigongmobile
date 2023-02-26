@@ -4,20 +4,26 @@ import pxToViewPort from 'postcss-px-to-viewport';
 
 // ref: https://umijs.org/config/
 const config: IConfig = {
+  proxy: {
+    '/api': {
+      target: 'http://localhost:54904/Admin',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    },
+  },
   history: 'hash',
   treeShaking: true,
   routes: [
     {
       path: '/insertEv',
-      component: '../pages/insertEv/index'
+      component: '../pages/insertEv/index',
     },
     {
       path: '/login',
-      component: '../pages/login/index'
+      component: '../pages/login/index',
     },
-    { path: '/ForgetPWD', component: '../pages/forgetPWD/index' },
-    { path: '/StudentReg', component: '../pages/StudentReg/index' },
-    { path: '/TeacherReg', component: '../pages/TeacherReg/index' },
+
+    { path: '/InsertStudent', component: '../pages/InsertStudent/index' },
     {
       path: '/',
       component: '../layouts/index',
@@ -28,32 +34,34 @@ const config: IConfig = {
         { path: '/EvaluateToMe', component: '../pages/EvaluateToMe/index' },
 
         { path: '/ViewDetail/:id', component: '../pages/ViewDetail/index' },
-
-      ]
-    }
+      ],
+    },
   ],
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
-    ['umi-plugin-react', {
-      antd: false,
-      dva: true,
-      dynamicImport: false,
-      title: '湖南师范大学PBL系统',
-      dll: false,
+    [
+      'umi-plugin-react',
+      {
+        antd: false,
+        dva: true,
+        dynamicImport: false,
+        title: '渤海理工职业学院招生综合管理系统',
+        dll: false,
 
-      routes: {
-        exclude: [
-          /models\//,
-          /services\//,
-          /model\.(t|j)sx?$/,
-          /service\.(t|j)sx?$/,
-          /components\//,
-        ],
+        routes: {
+          exclude: [
+            /models\//,
+            /services\//,
+            /model\.(t|j)sx?$/,
+            /service\.(t|j)sx?$/,
+            /components\//,
+          ],
+        },
       },
-    }]
+    ],
   ],
   cssLoaderOptions: {
-    localIdentName: '[local]',  // 配置这行
+    localIdentName: '[local]', // 配置这行
   },
   extraPostCSSPlugins: [
     pxToViewPort({
@@ -66,7 +74,7 @@ const config: IConfig = {
       mediaQuery: false,
     }),
   ],
-  publicPath: "/m/"
-}
+  publicPath: '/m/',
+};
 
 export default config;

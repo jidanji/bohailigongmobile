@@ -1,10 +1,8 @@
 import env from './env';
 
-
-
-const  apiBaseUrlBase = {
+const apiBaseUrlBase = {
   prod: 'https://pbl.hunnu.edu.cn/Admin',
-  development: 'http://localhost:54904/Admin',
+  development: '/api',
 };
 
-export const  apiBaseUrl= apiBaseUrlBase[env]
+export const apiBaseUrl = apiBaseUrlBase[env];

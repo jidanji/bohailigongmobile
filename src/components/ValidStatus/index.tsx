@@ -1,49 +1,47 @@
 import React, { Component } from 'react';
-import { Result,Button } from 'antd-mobile/2x'
+import { Result, Button } from 'antd-mobile/2x'
 
-import {LoginStatus} from '@/serivces/login'
+import { LoginStatus } from '@/serivces/login'
 
-import {GetSingleData} from '@/serivces/UserInfo'
+import { GetSingleData } from '@/serivces/UserInfo'
 
 import router from 'umi/router';
 
 class Index extends Component {
- state= {
-   loginStatus: false,
-   approval:false
- }
+  state = {
+    loginStatus: false,
+    approval: false
+  }
 
- async  componentDidMount() {
-   try {
-     await LoginStatus();
-     const { UserStatus } = await GetSingleData();
-     this.setState({ loginStatus: true,approval:UserStatus==1 })
-   } catch (err) {
-     console.log(err)
-     this.setState({
-       loginStatus: false
-     })
-   }
- }
+  async componentDidMount() {
+    try {
+      await LoginStatus();
+      const UserStatus = 1;
+      this.setState({ loginStatus: true })
+    } catch (err) {
+      console.log(err)
+      this.setState({
+        loginStatus: false
+      })
+    }
+  }
 
-  gotoLogin=()=> {
+  gotoLogin = () => {
     router.push('/login')
   }
 
 
   render() {
     // @ts-ignore
-    const {loginStatus,approval}=this.state;
-    var   dictVal="nologin";
-     if(loginStatus&&approval) {
-       dictVal = 'loginAndApproval'
-     }
+    const { loginStatus } = this.state;
+    var dictVal = "nologin";
+    if (loginStatus) {
+      dictVal = 'loginAndApproval'
+    }
 
-   if (loginStatus&&!approval) {
-     dictVal = 'loginNoApproval'
-   }
 
-    const dict= {
+
+    const dict = {
       "nologin": <div style={{}}>
         <Result
           status='error'
@@ -55,11 +53,8 @@ class Index extends Component {
           }
         />
       </div>,
-      'loginNoApproval': <div style={{textAlign:"center"}}>审批中，请稍后......</div>,
       'loginAndApproval': this.props.children
     }
-
-
     return (
       <div>
         {dict[dictVal]}

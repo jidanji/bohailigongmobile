@@ -19,7 +19,7 @@ import { PullToRefresh, List } from 'antd-mobile/2x'
 
 import { sleep } from 'antd-mobile/es/utils/sleep'
 
-import {GetOthersByUserAccount} from '@/serivces/CePing'
+import { GetOthersByUserAccount } from '@/serivces/CePing'
 
 
 
@@ -29,7 +29,7 @@ export default class index extends Component<any, any> {
     this.state = { data: 0 }
   }
 
-  getdata=async()=> {
+  getdata = async () => {
     let data = await GetOthersByUserAccount({ data: {} })
     this.setState({ data: (data.filter(item => !item.IsEvaluated) || []).length })
   }
@@ -41,19 +41,19 @@ export default class index extends Component<any, any> {
       <div>
         <PullToRefresh
           onRefresh={async () => {
-            await   this.getdata();
+            await this.getdata();
 
           }}
         >
           <div id='a1' className='navContainer'>
             <div>
               <Space style={{ '--gap': '24px' }}>
-                <div className='navDiv' onClick={() => { router.push('/EvaluateStudentList'); }}>
-                  <Badge content={this.state.data}>
-                    <div>
-                      <img src={pc} alt="" className='navImg' />
-                    </div>
-                  </Badge>
+                <div className='navDiv' onClick={() => { router.push('/InsertStudent'); }}>
+
+                  <div>
+                    <img src={pc} alt="" className='navImg' />
+                  </div>
+
                   <div>
                     开始评测
                   </div>
@@ -63,7 +63,7 @@ export default class index extends Component<any, any> {
 
                 <div className='navDiv'>
                   <div>
-                    <img src={tuandui} alt="" className='navImg' onClick={()=>{
+                    <img src={tuandui} alt="" className='navImg' onClick={() => {
                       router.push('/EvaluateToMe');
                     }} />
                   </div>

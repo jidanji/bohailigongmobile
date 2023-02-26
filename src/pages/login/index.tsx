@@ -6,7 +6,7 @@ import {
   Toast
 } from 'antd-mobile/2x'
 
-import logo from '@/assets/logo.jpg'
+import logo from '@/assets/logo.png'
 import './index.less'
 
 import router from 'umi/router';
@@ -63,10 +63,13 @@ export default class index extends Component {
       <div className='loginContainer'>
 
         <div className='logoDiv'>
-          <img src={logo} alt="" />
+          <div>
+            <img src={logo} alt="" />
+          </div>
+
         </div>
         <div className='systemName'>
-          湖南师范大学PBL管理系统
+          招生综合管理系统
         </div>
 
 
@@ -89,22 +92,10 @@ export default class index extends Component {
             <Input placeholder='请输入密码' clearable type='password' />
           </Form.Item>
         </Form>
-        <div className='center'>
-          <Button color='primary' fill='none' onClick={this.forgetPWD}>
-            忘记密码
-          </Button>
-        </div>
 
-        <div className='center'>
-          <Button color='primary' fill='none' onClick={this.StudentReg}>
-            学生注册
-          </Button>
-        </div>
-        <div className='center'>
-          <Button color='primary' fill='none' onClick={this.TeacherReg}>
-            老师注册
-          </Button>
-        </div>
+
+
+
 
 
 
@@ -113,7 +104,7 @@ export default class index extends Component {
 
 
         <div className='copyRightDiv'>
-          版权所有 2016-2022
+          版权所有 2023-2023
         </div>
       </div >
     )

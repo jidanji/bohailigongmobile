@@ -13,13 +13,15 @@ import router from 'umi/router';
 
 import SelectorItem from '@/components/SelectorItem'
 
+import { GetData } from '@/serivces/MathDict'
+
 
 
 class index extends Component<any, any> {
   onFinish = async (values: any) => {
     try {
       const { Area, StudentType } = values;
-      debugger
+
       const formValue = { ...values, Area: !!(Area || []).length ? Area[0] : "", StudentType: !!(StudentType || []).length ? StudentType[0] : "" };
       await AddStudent({ data: formValue });
 
@@ -31,7 +33,7 @@ class index extends Component<any, any> {
       });
     } catch (err) {
       Dialog.alert({
-        content: `注册失败，因为：${err?.message || err || '原因不明'}`,
+        content: `招生信息录入失败，因为：${err?.message || err || '原因不明'}`,
         onConfirm: () => {
         },
       });
@@ -42,10 +44,13 @@ class index extends Component<any, any> {
     router.push('/login');
   };
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
-
+    this.state = { zhuanyeDict: [] }
   }
+
+
+
 
 
   render() {
@@ -58,6 +63,8 @@ class index extends Component<any, any> {
         label: item.GroupName, value: item.GroupId,
       };
     });
+
+    const { zhuanyeDict } = this.state;
     return (
       <div>
 
@@ -67,14 +74,14 @@ class index extends Component<any, any> {
         }} onBack={this.back}>招生录入</NavBar>
 
 
-        <Mask visible={!!this.props.loading.effects['dict/fetchList']} opacity='0'>
+        <Mask visible={false} opacity='0.75'>
           <div style={{
             position: 'absolute',
             top: '50%',
             left: '50%',
           }}>
             <SpinLoading color='primary' style={{ '--size': '48px' }} />
-            <div>
+            <div style={{ color: "#1677ff" }}>
               加载中.....
             </div>
           </div>
@@ -341,7 +348,10 @@ class index extends Component<any, any> {
           </Form.Item>
 
           <Form.Item label='报考专业' name='StudentZhuanYeId'  >
-            <Input placeholder='请输入报考专业' clearable />
+            <SelectorItem dataSource={
+
+              zhuanyeDict
+            } />
           </Form.Item>
 
           <Form.Item label='毕业学校' name='StudentSchool'  >
@@ -381,8 +391,15 @@ class index extends Component<any, any> {
     );
   }
 
-  componentDidMount() {
-    this.props.dispatch({ type: 'dict/fetchList', payload: null });
+  async componentDidMount() {
+    let data = await GetData({
+      data: {
+        DictTypeId: '881e8823-d103-44c3-8c69-ae98cb899cab', start: -1, length: -1, draw: 3
+      }
+    });
+
+    let zhuanyeDict = (data || []).map(item => { return { label: item.DictValue, value: item.DictId } })
+    this.setState({ zhuanyeDict })
   }
 
 }

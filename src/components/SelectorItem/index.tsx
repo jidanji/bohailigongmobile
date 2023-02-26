@@ -18,6 +18,16 @@ export default class index extends Component<any, any> {
     this.props.onChange([]);
   }
   render() {
+    let showTxt = null;
+
+    if ((this.state.value || []).length) {
+      let ret = (this.props.dataSource || []).filter(item => item.value == this.state.value[0]);
+      if (ret.length) {
+        showTxt = ret[0].label;
+      }
+
+
+    }
     return (
       <>
         <div className={(this.state.value || []).length ? 'SelectorItemSelected' : 'SelectorItem'}
@@ -26,7 +36,7 @@ export default class index extends Component<any, any> {
           }}
         >
           <div className='content'>
-            {(this.state.value || []).join(',') || '请选择'}
+            {showTxt || '请选择'}
           </div>
           <Space wrap>
             <div className='toolbar' onClick={this.clear}>

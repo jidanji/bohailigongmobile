@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { GetCepingDetails } from '@/serivces/CePing';
 
-import TestItem from './../EvaluateToMe/components/testItem';
+import TestItem from './../MyZhaosheng/components/testItem';
 
 import './index.less';
 import router from 'umi/router';
@@ -53,7 +53,7 @@ class Index extends Component<any,any> {
             position: '-webkit-sticky', position: 'sticky', top: 0,
             backgroundColor: 'rgb(245, 247, 250)', zIndex: '9999',
           }} onBack={() => {
-            router.push('/EvaluateToMe');
+            router.push('/MyZhaosheng');
           }}>评价详情</NavBar>
           <TestItem No={1} EvaluateTime={this.state.data.evaluatedate} EvaluateTotal={this.state.data.resault}
             noDetailButton {...this.state.data}></TestItem>

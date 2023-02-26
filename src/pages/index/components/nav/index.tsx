@@ -17,7 +17,7 @@ import './index.less'
 
 import { Badge, Space } from 'antd-mobile/2x'
 
-import { PullToRefresh, List } from 'antd-mobile/2x'
+import { PullToRefresh, List, Avatar } from 'antd-mobile/2x'
 
 import { sleep } from 'antd-mobile/es/utils/sleep'
 
@@ -48,6 +48,9 @@ export default class index extends Component<any, any> {
           }}
         >
           <div id='a1' className='navContainer'>
+            <div className='QuickTop'>
+              <div className='welcome'>欢迎，马良</div>
+            </div>
             <div>
               <Space style={{ '--gap': '24px' }}>
                 <div className='navDiv' onClick={() => { router.push('/InsertStudent'); }}>
@@ -66,7 +69,7 @@ export default class index extends Component<any, any> {
                 <div className='navDiv'>
                   <div>
                     <img src={tuandui} alt="" className='navImg' onClick={() => {
-                      router.push('/EvaluateToMe');
+                      router.push('/MyZhaosheng');
                     }} />
                   </div>
                   <div>
@@ -78,7 +81,7 @@ export default class index extends Component<any, any> {
                 <div className='navDiv'>
                   <div>
                     <img src={mima} alt="" className='navImg' onClick={() => {
-                      router.push('/EvaluateToMe');
+                      router.push('/MyZhaosheng');
                     }} />
                   </div>
                   <div>

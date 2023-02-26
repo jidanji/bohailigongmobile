@@ -32,7 +32,7 @@ class Index extends Component {
             backgroundColor: 'rgb(245, 247, 250)', zIndex: '9999',
           }} onBack={() => {
             router.push('/');
-          }}>别人评价我</NavBar>
+          }}>我的招生</NavBar>
           {this.state.data.length == 0 && <Empty description='暂无数据' />}
 
           {

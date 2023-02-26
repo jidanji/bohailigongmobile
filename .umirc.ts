@@ -31,7 +31,7 @@ const config: IConfig = {
         { path: '/', component: '../pages/index/index' },
         { path: '/EvaluateStudentList', component: '../pages/EvaluateStudentList/index' },
         { path: '/Start/:id', component: '../pages/Start/index' },
-        { path: '/EvaluateToMe', component: '../pages/EvaluateToMe/index' },
+        { path: '/MyZhaosheng', component: '../pages/MyZhaosheng/index' },
 
         { path: '/ViewDetail/:id', component: '../pages/ViewDetail/index' },
       ],

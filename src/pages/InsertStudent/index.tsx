@@ -33,7 +33,7 @@ class index extends Component<any, any> {
       Dialog.alert({
         content: '录入学生信息成功!',
         onConfirm: () => {
-          router.push('/login');
+          router.push('/');
         },
       });
     } catch (err) {
@@ -46,7 +46,7 @@ class index extends Component<any, any> {
   };
 
   back = () => {
-    router.push('/login');
+    router.push('/');
   };
 
   constructor(props: any) {

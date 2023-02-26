@@ -27,18 +27,18 @@ export default class index extends Component {
           <div className='d1' style={{}}>
 
             <div className='studentName' >
-              {this.props.EvaluateTotal && this.props.EvaluateTotal.toFixed(1)}马良
+              {this.props.StudentName}
             </div>
 
             <div className='studentName' >
-              {this.props.EvaluateTotal && this.props.EvaluateTotal.toFixed(1)}131121198601212230
+              {this.props.StudentIDCard}
             </div>
 
 
           </div>
           <div className='d2' style={{ display: "flex" }}>
             <div className='studentType'>
-              录入时间 ： {this.props.EvaluateTime && datetimeFormate(this.props.EvaluateTime)}2010-01-01
+              录入时间 ： {this.props.InsertTime && datetimeFormate(this.props.InsertTime)} 
             </div>
 
           </div>
@@ -48,7 +48,7 @@ export default class index extends Component {
             {this.props.No && this.props.No}
           </div>
           <Button size='small' color='primary' fill='none' onClick={() => {
-            router.push('/ViewDetail/' + this.props.EvaluateId);
+            router.push('/ViewDetail/' + this.props.StudentId);
           }}>
             查看详情
           </Button>

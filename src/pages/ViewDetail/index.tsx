@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { GetCepingDetails } from '@/serivces/CePing';
 
-import TestItem from './../MyZhaosheng/components/testItem';
+import TestItem from './../MyZhaosheng/components/StudentItem';
 
 import './index.less';
 import router from 'umi/router';

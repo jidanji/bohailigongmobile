@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.less';
 
-import TestItem from './components/testItem';
+import StudentItem from './components/StudentItem';
 import { Empty, Mask, NavBar, SpinLoading } from 'antd-mobile/2x';
 import router from 'umi/router';
 
@@ -34,9 +34,8 @@ class Index extends Component {
             router.push('/');
           }}>我的招生</NavBar>
           {this.state.data.length == 0 && <Empty description='暂无数据' />}
-
           {
-            this.state.data.map((item, index) => <TestItem No={index + 1} {...item}></TestItem>)
+            this.state.data.map((item, index) => <StudentItem No={index + 1} {...item}></StudentItem>)
           }
 
 

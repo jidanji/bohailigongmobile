@@ -20,9 +20,14 @@ import { GetData } from '@/serivces/MathDict'
 class index extends Component<any, any> {
   onFinish = async (values: any) => {
     try {
-      const { Area, StudentType } = values;
+      const { Area, StudentType, StudentZhuanYeId } = values;
 
-      const formValue = { ...values, Area: !!(Area || []).length ? Area[0] : "", StudentType: !!(StudentType || []).length ? StudentType[0] : "" };
+      const formValue = {
+        ...values,
+        Area: !!(Area || []).length ? Area[0] : "",
+        StudentType: !!(StudentType || []).length ? StudentType[0] : "",
+        StudentZhuanYeId: !!(StudentZhuanYeId || []).length ? StudentZhuanYeId[0] : "",
+      };
       await AddStudent({ data: formValue });
 
       Dialog.alert({
@@ -46,7 +51,7 @@ class index extends Component<any, any> {
 
   constructor(props: any) {
     super(props);
-    this.state = { zhuanyeDict: [] }
+    this.state = { zhuanyeDict: [], loading: false }
   }
 
 
@@ -74,7 +79,7 @@ class index extends Component<any, any> {
         }} onBack={this.back}>招生录入</NavBar>
 
 
-        <Mask visible={false} opacity='0.75'>
+        <Mask visible={this.state.loading} opacity='0.75'>
           <div style={{
             position: 'absolute',
             top: '50%',
@@ -392,14 +397,22 @@ class index extends Component<any, any> {
   }
 
   async componentDidMount() {
-    let data = await GetData({
-      data: {
-        DictTypeId: '881e8823-d103-44c3-8c69-ae98cb899cab', start: -1, length: -1, draw: 3
-      }
-    });
+    try {
+      this.setState({ loading: true })
+      let data = await GetData({
+        data: {
+          DictTypeId: '881e8823-d103-44c3-8c69-ae98cb899cab', start: -1, length: -1, draw: 3
+        }
+      });
 
-    let zhuanyeDict = (data || []).map(item => { return { label: item.DictValue, value: item.DictId } })
-    this.setState({ zhuanyeDict })
+      let zhuanyeDict = (data || []).map(item => { return { label: item.DictValue, value: item.DictId } })
+      this.setState({ zhuanyeDict })
+    }
+    catch { }
+    finally {
+      this.setState({ loading: false })
+    }
+
   }
 
 }

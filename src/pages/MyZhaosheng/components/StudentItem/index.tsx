@@ -50,7 +50,14 @@ export default class index extends Component {
           <Button size='small' color='primary' fill='none' onClick={() => {
             router.push('/ViewDetail/' + this.props.StudentId);
           }}>
-            查看详情
+            详情
+          </Button>
+
+
+          <Button size='small' color='primary' fill='none' onClick={() => {
+            router.push('/ViewDetail/' + this.props.StudentId);
+          }}>
+            更正数据
           </Button>
         </div>}
       </div>

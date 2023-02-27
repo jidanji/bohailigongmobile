@@ -21,6 +21,17 @@ export const GetUserById = (options) => {
   })
 }
 
+export const ChangePWD = (options) => {
+
+  return request(`${BaseUrl}/UserInfo/ChangePWD`, {
+    method: 'POST',
+    ...options
+  })
+}
+
+
+
+
 
 
 

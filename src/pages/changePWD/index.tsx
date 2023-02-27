@@ -12,13 +12,13 @@ import { AddOutline } from 'antd-mobile-icons'
 
 import router from 'umi/router';
 
-import { GetBackPWD } from '@/serivces/login'
+import { ChangePWD } from '@/serivces/UserInfo'
 export default class index extends Component {
   onFinish = async (values: any) => {
     try {
       this.setState({ loading: true })
-      const { UserAccount, UserPwd } = await GetBackPWD({ data: values });
-      this.setState({ loading: false, UserAccount, UserPwd })
+      await ChangePWD({ data: values });
+      this.setState({ loading: false })
     } catch (err) {
       this.setState({ loading: false, UserAccount: "", UserPwd: "" })
       Toast.show({
@@ -45,7 +45,7 @@ export default class index extends Component {
           className='FormDiv'
           layout='horizontal'
           footer={
-            <Button loadingText={"获取账号密码中..."} loading={this.state.loading} block type='submit' color='primary' >
+            <Button loadingText={"正在为你修改密码..."} loading={this.state.loading} block type='submit' color='primary' >
               保存
             </Button>
           }
@@ -54,7 +54,7 @@ export default class index extends Component {
           <Form.Item label='当前登录人' name='usertel'  >
             12423123
           </Form.Item>
-          <Form.Item label='旧密码' name='usernumber' rules={[{ required: true, message: '旧密码必须输入' },
+          <Form.Item label='旧密码' name='oldPWD' rules={[{ required: true, message: '旧密码必须输入' },
           {
             min: 6,
             type: 'string',
@@ -63,7 +63,7 @@ export default class index extends Component {
             <Input placeholder='请输入旧密码' clearable />
           </Form.Item>
 
-          <Form.Item label='新密码' name='usernumber' rules={[{ required: true, message: '旧密码必须输入' },
+          <Form.Item label='新密码' name='newPWD' rules={[{ required: true, message: '旧密码必须输入' },
           {
             min: 6,
             type: 'string',

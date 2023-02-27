@@ -34,13 +34,15 @@ export default class index extends Component<any, any> {
 
   getdata = async () => {
     let total = await GetTotal({ data: {} })
+
+    debugger
     this.setState({ total });
   }
   componentDidMount() {
     this.getdata();
   }
   render() {
-    const { total } = this.state;
+    const { total=0 } = this.state;
     return (
       <div>
         <PullToRefresh

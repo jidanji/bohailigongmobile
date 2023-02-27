@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Result, Button } from 'antd-mobile/2x'
+import { Result, Button,DotLoading } from 'antd-mobile/2x'
 
 import { LoginStatus } from '@/serivces/login'
 
@@ -9,7 +9,7 @@ import router from 'umi/router';
 
 class Index extends Component {
   state = {
-    loginStatus: false,
+    loginStatus: 'logining',
     approval: false
   }
 
@@ -18,14 +18,11 @@ class Index extends Component {
       let { UserName, UserAccount } = await LoginStatus();
       localStorage.setItem('UserName', UserName)
       localStorage.setItem('UserAccount', UserAccount)
-
-
-      const UserStatus = 1;
-      this.setState({ loginStatus: true })
+      this.setState({ loginStatus: 'loginAndApproval' })
     } catch (err) {
       console.log(err)
       this.setState({
-        loginStatus: false
+        loginStatus: "nologin"
       })
     }
   }
@@ -38,10 +35,7 @@ class Index extends Component {
   render() {
     // @ts-ignore
     const { loginStatus } = this.state;
-    var dictVal = "nologin";
-    if (loginStatus) {
-      dictVal = 'loginAndApproval'
-    }
+   
 
 
 
@@ -57,11 +51,12 @@ class Index extends Component {
           }
         />
       </div>,
-      'loginAndApproval': this.props.children
+      'loginAndApproval': this.props.children,
+      'logining': <DotLoading color='primary' />
     }
     return (
       <div>
-        {dict[dictVal]}
+        {dict[loginStatus]}
       </div>
     );
   }

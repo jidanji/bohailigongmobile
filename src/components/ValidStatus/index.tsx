@@ -15,7 +15,11 @@ class Index extends Component {
 
   async componentDidMount() {
     try {
-      await LoginStatus();
+      let { UserName, UserAccount } = await LoginStatus();
+      localStorage.setItem('UserName', UserName)
+      localStorage.setItem('UserAccount', UserAccount)
+
+
       const UserStatus = 1;
       this.setState({ loginStatus: true })
     } catch (err) {

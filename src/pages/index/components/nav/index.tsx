@@ -49,7 +49,7 @@ export default class index extends Component<any, any> {
         >
           <div id='a1' className='navContainer'>
             <div className='QuickTop'>
-              <div className='welcome'>欢迎，马良</div>
+              <div className='welcome'>欢迎，{localStorage.getItem("UserName")}</div>
             </div>
             <div>
               <Space style={{ '--gap': '24px' }}>

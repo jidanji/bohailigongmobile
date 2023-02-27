@@ -27,19 +27,9 @@ export const GetBackPWD = ( options) => {
   })
 }
 
-export const AddUserForTeacher = (options) => {
-  return request(`${BaseUrl}/UserInfo/AddUser`, {
-    method: 'POST',
-    ...options
-  })
-}
+ 
 
-export const AddUserForStudent = (options,urlParams) => {
-  return request(`${BaseUrl}/UserInfo/AddUser?${urlParams}`, {
-    method: 'POST',
-    ...options
-  })
-}
+ 
 
 export const LoginStatus = (options) => {
   return request(`${BaseUrl}/Login/LoginStatus`, {

@@ -18,7 +18,9 @@ export default class index extends Component {
     try {
       this.setState({ loading: true })
       await ChangePWD({ data: values });
-      this.setState({ loading: false })
+      this.setState({ loading: false }, () => {
+        router.push('/')
+      })
     } catch (err) {
       this.setState({ loading: false, UserAccount: "", UserPwd: "" })
       Toast.show({
@@ -52,7 +54,10 @@ export default class index extends Component {
           onFinish={this.onFinish}
         >
           <Form.Item label='当前登录人' name='usertel'  >
-            12423123
+            {localStorage.getItem("UserName")}
+          </Form.Item>
+          <Form.Item label='当前登录账号' name='usertel'  >
+            {localStorage.getItem("UserAccount")}
           </Form.Item>
           <Form.Item label='旧密码' name='oldPWD' rules={[{ required: true, message: '旧密码必须输入' },
           {

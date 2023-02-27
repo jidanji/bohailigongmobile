@@ -20,7 +20,6 @@ export default class index extends Component<any, any> {
           isWX && < NoWeChat />
         }
       </>
-
     )
   }
 

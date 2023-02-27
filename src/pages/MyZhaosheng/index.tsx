@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import './index.less';
 
 import StudentItem from './components/StudentItem';
-import { Empty, Mask, NavBar, SpinLoading, Button, Form, Input, TextArea } from 'antd-mobile/2x';
+import { Empty, Mask, NavBar, SpinLoading, Button, Form, Input, TextArea, Space } from 'antd-mobile/2x';
 import router from 'umi/router';
 
 import { StudentGetData, GengZhengStudent } from '@/serivces/Students';
 
 import ValidStatus from '@/components/ValidStatus';
 
+import { produce, enableES5 } from 'immer';
+
 class Index extends Component {
+  formRef = React.createRef<FormInstance>()
   constructor(props) {
     super(props);
     this.state = { data: [], loading: false, showDetail: false, currentStuent: {}, showBeginUpdate: false };
@@ -21,7 +24,11 @@ class Index extends Component {
   }
 
   BeginUpdate = (currentStuent) => {
-    this.setState({ showBeginUpdate: true, currentStuent })
+    const { DingZhengName,
+      DingZhengNumber } = currentStuent;
+    this.setState({ showBeginUpdate: true, currentStuent }, () => {
+      this.formRef.current?.setFieldsValue({ DingZhengName, DingZhengNumber })
+    })
   }
 
   onFinish = async (values) => {
@@ -30,6 +37,18 @@ class Index extends Component {
     try {
       await GengZhengStudent({ data: { DingZhengName, DingZhengNumber, StudentId } })
 
+      this.setState(
+        produce((draft) => {
+          var ret = (draft.data || []).filter(item => item.StudentId == StudentId);
+
+          if (ret.length) {
+            ret[0].DingZhengName = DingZhengName;
+            ret[0].DingZhengNumber = DingZhengNumber;
+          }
+
+
+        })
+      );
     }
 
     catch { }
@@ -130,12 +149,17 @@ class Index extends Component {
             </div>
             <div>
               <Form
+                ref={this.formRef}
                 layout='horizontal'
                 footer={
-                  <> <Button block type='submit' color='primary' size='middle'>
+                  <> <Button block type='submit' color='primary' size='middle' style={{ marginBottom: "15px" }}>
                     提交
                   </Button>
-                  </>
+                    <Button block color='primary' fill='outline' size='middle' onClick={() => {
+                      this.setState({ showBeginUpdate: false })
+                    }}>
+                      取消
+                    </Button></>
                 }
                 onFinish={this.onFinish}
               >
@@ -144,7 +168,7 @@ class Index extends Component {
                   label='姓名'
                   rules={[{ required: true, message: '姓名不能为空' }]}
                 >
-                  <Input onChange={console.log} placeholder='请输入姓名' value=''/>
+                  <Input onChange={console.log} placeholder='请输入姓名' value='' />
                 </Form.Item>
 
                 <Form.Item

@@ -1,73 +1,46 @@
 /* eslint-disable */
-import { request } from '@/utils/request'
+import { request } from '@/utils/request';
 
-import { apiBaseUrl as  BaseUrl } from '@/utils/domain';
+import { apiBaseUrl as BaseUrl } from '@/utils/domain';
 
-
-
-export const GetOthersByUserAccount = (options) => {
-  return request(`${BaseUrl}/CePing/GetOthersByUserAccount`, {
-    method: 'POST',
-    ...options
-  })
-
-
-}
-
-export const GetData = (options) => {
+export const GetData = options => {
   return request(`${BaseUrl}/CePing/GetData`, {
     method: 'POST',
-    ...options
-  })
+    ...options,
+  });
+};
 
-
-}
-
-export const CePing = (options) => {
+export const CePing = options => {
   return request(`${BaseUrl}/CePing/CePing`, {
     method: 'POST',
-    ...options
-  })
-}
+    ...options,
+  });
+};
 
-export const ToMeGetData = (options) => {
+export const ToMeGetData = options => {
   return request(`${BaseUrl}/ToMe/GetData`, {
     method: 'POST',
-    ...options
-  })
-}
+    ...options,
+  });
+};
 
-export const GetCepingDetails = (options) => {
+export const GetCepingDetails = options => {
   return request(`${BaseUrl}/Ceping/GetCepingDetails`, {
     method: 'POST',
-    ...options
-  })
-}
+    ...options,
+  });
+};
 
-
-export const getdata = (options) => {
+export const getdata = options => {
   return request(`${BaseUrl}/DictType/getdata`, {
     method: 'POST',
-    ...options
-  })
-}
+    ...options,
+  });
+};
 
-export const AddShiTi = (options) => {
+export const AddShiTi = options => {
   return request(`${BaseUrl}/Shiti/AddShiTi`, {
     method: 'POST',
-    ...options
-  })
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ...options,
+  });
+};

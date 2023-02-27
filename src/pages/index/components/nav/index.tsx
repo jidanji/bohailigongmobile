@@ -20,8 +20,7 @@ import { Badge, Space } from 'antd-mobile/2x'
 import { PullToRefresh, List, Avatar } from 'antd-mobile/2x'
 
 import { sleep } from 'antd-mobile/es/utils/sleep'
-
-import { GetOthersByUserAccount } from '@/serivces/CePing'
+ 
 
 
 
@@ -32,8 +31,7 @@ export default class index extends Component<any, any> {
   }
 
   getdata = async () => {
-    let data = await GetOthersByUserAccount({ data: {} })
-    this.setState({ data: (data.filter(item => !item.IsEvaluated) || []).length })
+    
   }
   componentDidMount() {
     this.getdata();

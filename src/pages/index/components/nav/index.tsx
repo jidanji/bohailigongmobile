@@ -35,7 +35,7 @@ export default class index extends Component<any, any> {
   getdata = async () => {
     let total = await GetTotal({ data: {} })
 
-    debugger
+   
     this.setState({ total });
   }
   componentDidMount() {

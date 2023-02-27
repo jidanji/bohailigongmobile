@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './index.css';
+import NoWeChat from '@/components/NoWeChat'
+export default class index extends Component<any, any> {
+  constructor(props: any) {
+    super(props);
 
-const BasicLayout: React.FC = props => {
-  return (
-    <div className={styles.normal}>
-      {props.children}
-    </div>
-  );
-};
+    this.state = {
+      isWX: false
+    }
+  }
+  render() {
+    const { isWX } = this.state;
+    return (
+      <>
+        {!isWX && <div className={styles.normal}>
+          {this.props.children}
+        </div>}
+        {
+          isWX && < NoWeChat />
+        }
+      </>
 
-export default BasicLayout;
+    )
+  }
+
+  componentDidMount(): void {
+    if (/MicroMessenger/i.test(navigator.userAgent)) {
+      this.setState({ isWX: true });
+    }
+  }
+}

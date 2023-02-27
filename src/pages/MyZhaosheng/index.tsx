@@ -116,13 +116,13 @@ class Index extends Component {
 
               <div className='item'>
                 <div className='itemTitle'>报考专业</div>
-                <div className='itemContent'>{currentStuent.StudentZhuanYe || "-"}</div>
+                <div className='itemContent'>{currentStuent.StudentZhuanYeValue || "-"}</div>
               </div>
 
 
               <div className='item'>
                 <div className='itemTitle'>原中学</div>
-                <div className='itemContent'>{currentStuent.studentSchool || "-"}</div>
+                <div className='itemContent'>{currentStuent.StudentSchool || "-"}</div>
               </div>
 
               <div className='item'>

@@ -37,7 +37,7 @@ const config: IConfig = {
       {
         antd: false,
         dva: true,
-        dynamicImport: false,
+        dynamicImport: true,
         title: '渤海理工职业学院招生综合管理系统',
         dll: false,
 

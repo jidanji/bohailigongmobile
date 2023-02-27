@@ -11,10 +11,12 @@
     "antd": "^4.19.5",
     "antd-mobile": "^5.4.0",
     "antd-mobile-icons": "^0.3.0",
+    "copy-to-clipboard": "^3.3.3",
     "dva": "^2.6.0-beta.6",
     "lodash": "^4.17.21",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "save": "^2.9.0"
   },
   "devDependencies": {
     "@types/jest": "^23.3.12",

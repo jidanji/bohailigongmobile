@@ -15,6 +15,8 @@ import { ValidUser, LogOut } from '@/serivces/login'
 
 import Cookies from 'js-cookie'
 
+import NoWeChat from '@/components/NoWeChat'
+
 
 export default class index extends Component {
   onFinish = async (values: any) => {
@@ -42,7 +44,8 @@ export default class index extends Component {
   }
 
   state = {
-    loading: false
+    loading: false,
+    isWX: false
   }
   forgetPWD = () => {
     router.push('/ForgetPWD')
@@ -61,6 +64,13 @@ export default class index extends Component {
     } else {
       window.location.href = 'http://112.126.83.123/admin/login'
     }
+
+    if (/MicroMessenger/i.test(navigator.userAgent)) {
+      this.setState({ isWX: true });
+    }
+
+
+
     const data = await LogOut({ data: {}, headers: { 'X-Requested-With': 'XMLHttpRequest' } });
     console.log(data)
   }
@@ -68,39 +78,41 @@ export default class index extends Component {
 
 
   render() {
+    const { isWX } = this.state;
     return (
-      <div className='loginContainer'>
+      <>
+        {!isWX && <div className='loginContainer'>
 
-        <div className='logoDiv'>
-          <div>
-            <img src={logo} alt="" />
+          <div className='logoDiv'>
+            <div>
+              <img src={logo} alt="" />
+            </div>
+
+          </div>
+          <div className='systemName'>
+            招生综合管理系统
           </div>
 
-        </div>
-        <div className='systemName'>
-          招生综合管理系统
-        </div>
 
 
 
-
-        <Form
-          className='FormDiv'
-          layout='horizontal'
-          footer={
-            <Button block type='submit' color='primary' loading={this.state.loading} loadingText='登录中...'>
-              登录
-            </Button>
-          }
-          onFinish={this.onFinish}
-        >
-          <Form.Item label='用户名' name='UserName' rules={[{ required: true, message: '用户名必须输入' }]}>
-            <Input placeholder='请输入用户名' clearable />
-          </Form.Item>
-          <Form.Item label='密码' name='UserPWD' rules={[{ required: true, message: '密码必须输入' }]}>
-            <Input placeholder='请输入密码' clearable type='password' />
-          </Form.Item>
-        </Form>
+          <Form
+            className='FormDiv'
+            layout='horizontal'
+            footer={
+              <Button block type='submit' color='primary' loading={this.state.loading} loadingText='登录中...'>
+                登录
+              </Button>
+            }
+            onFinish={this.onFinish}
+          >
+            <Form.Item label='用户名' name='UserName' rules={[{ required: true, message: '用户名必须输入' }]}>
+              <Input placeholder='请输入用户名' clearable />
+            </Form.Item>
+            <Form.Item label='密码' name='UserPWD' rules={[{ required: true, message: '密码必须输入' }]}>
+              <Input placeholder='请输入密码' clearable type='password' />
+            </Form.Item>
+          </Form>
 
 
 
@@ -112,10 +124,15 @@ export default class index extends Component {
 
 
 
-        <div className='copyRightDiv'>
-          版权所有 2023-2023
-        </div>
-      </div >
+          <div className='copyRightDiv'>
+            版权所有 2023-2023
+          </div>
+        </div >}
+        {
+          isWX && <NoWeChat/>
+        }
+      </>
+
     )
   }
 }

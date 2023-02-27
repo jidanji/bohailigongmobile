@@ -53,8 +53,8 @@ class Index extends Component<any,any> {
             position: '-webkit-sticky', position: 'sticky', top: 0,
             backgroundColor: 'rgb(245, 247, 250)', zIndex: '9999',
           }} onBack={() => {
-            router.push('/MyZhaosheng');
-          }}>评价详情</NavBar>
+            router.goBack();
+          }}>招生详情</NavBar>
           <TestItem No={1} EvaluateTime={this.state.data.evaluatedate} EvaluateTotal={this.state.data.resault}
             noDetailButton {...this.state.data}></TestItem>
           <div className='viewItem'>

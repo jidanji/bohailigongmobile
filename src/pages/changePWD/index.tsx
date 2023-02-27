@@ -13,6 +13,9 @@ import { AddOutline } from 'antd-mobile-icons'
 import router from 'umi/router';
 
 import { ChangePWD } from '@/serivces/UserInfo'
+
+import ValidStatus from '@/components/ValidStatus'
+
 export default class index extends Component {
   onFinish = async (values: any) => {
     try {
@@ -43,41 +46,42 @@ export default class index extends Component {
           position: '-webkit-sticky', position: 'sticky', top: 0,
           backgroundColor: 'rgb(245, 247, 250)', zIndex: '9999',
         }} onBack={() => { router.push('/') }}>修改密码</NavBar>
-        <Form
-          className='FormDiv'
-          layout='horizontal'
-          footer={
-            <Button loadingText={"正在为你修改密码..."} loading={this.state.loading} block type='submit' color='primary' >
-              保存
-            </Button>
-          }
-          onFinish={this.onFinish}
-        >
-          <Form.Item label='当前登录人' name='usertel'  >
-            {localStorage.getItem("UserName")}
-          </Form.Item>
-          <Form.Item label='当前登录账号' name='usertel'  >
-            {localStorage.getItem("UserAccount")}
-          </Form.Item>
-          <Form.Item label='旧密码' name='oldPWD' rules={[{ required: true, message: '旧密码必须输入' },
-          {
-            min: 6,
-            type: 'string',
-          },
-          ]}>
-            <Input placeholder='请输入旧密码' clearable />
-          </Form.Item>
+        <ValidStatus>
+          <Form
+            className='FormDiv'
+            layout='horizontal'
+            footer={
+              <Button loadingText={"正在为你修改密码..."} loading={this.state.loading} block type='submit' color='primary' >
+                保存
+              </Button>
+            }
+            onFinish={this.onFinish}
+          >
+            <Form.Item label='当前登录人' name='usertel'  >
+              {localStorage.getItem("UserName")}
+            </Form.Item>
+            <Form.Item label='当前登录账号' name='usertel'  >
+              {localStorage.getItem("UserAccount")}
+            </Form.Item>
+            <Form.Item label='旧密码' name='oldPWD' rules={[{ required: true, message: '旧密码必须输入' },
+            {
+              min: 6,
+              type: 'string',
+            },
+            ]}>
+              <Input placeholder='请输入旧密码' clearable />
+            </Form.Item>
 
-          <Form.Item label='新密码' name='newPWD' rules={[{ required: true, message: '旧密码必须输入' },
-          {
-            min: 6,
-            type: 'string',
-          },]}>
-            <Input placeholder='请输入新密码' clearable />
-          </Form.Item>
-        </Form>
+            <Form.Item label='新密码' name='newPWD' rules={[{ required: true, message: '旧密码必须输入' },
+            {
+              min: 6,
+              type: 'string',
+            },]}>
+              <Input placeholder='请输入新密码' clearable />
+            </Form.Item>
+          </Form>
 
-
+        </ValidStatus>
       </div >
     )
   }

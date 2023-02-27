@@ -21,6 +21,16 @@ export const StudentGetData = (options) => {
   })
 }
 
+export const GengZhengStudent = (options) => {
+
+  return request(`${BaseUrl}/Student/GengZhengStudent`, {
+    method: 'POST',
+    ...options
+  })
+}
+
+
+
  
 
 

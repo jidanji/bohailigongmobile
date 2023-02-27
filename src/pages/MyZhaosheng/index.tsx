@@ -2,24 +2,43 @@ import React, { Component } from 'react';
 import './index.less';
 
 import StudentItem from './components/StudentItem';
-import { Empty, Mask, NavBar, SpinLoading, Button } from 'antd-mobile/2x';
+import { Empty, Mask, NavBar, SpinLoading, Button, Form, Input, TextArea } from 'antd-mobile/2x';
 import router from 'umi/router';
 
-import { StudentGetData } from '@/serivces/Students';
+import { StudentGetData, GengZhengStudent } from '@/serivces/Students';
 
 import ValidStatus from '@/components/ValidStatus';
 
 class Index extends Component {
-  constructor() {
-    super();
-    this.state = { data: [], loading: false, showDetail: false, currentStuent: {} };
+  constructor(props) {
+    super(props);
+    this.state = { data: [], loading: false, showDetail: false, currentStuent: {}, showBeginUpdate: false };
   }
+
 
   viewDetail = (currentStuent) => {
     this.setState({ showDetail: true, currentStuent })
   }
+
+  BeginUpdate = (currentStuent) => {
+    this.setState({ showBeginUpdate: true, currentStuent })
+  }
+
+  onFinish = async (values) => {
+    let [{ DingZhengName, DingZhengNumber }, { StudentId }] = [values, this.state.currentStuent];
+
+    try {
+      await GengZhengStudent({ data: { DingZhengName, DingZhengNumber, StudentId } })
+      
+    }
+
+    catch { }
+    finally { this.setState({showBeginUpdate:false})}
+
+
+  }
   render() {
-    const { showDetail, currentStuent } = this.state;
+    const { showDetail, currentStuent, showBeginUpdate } = this.state;
     return (
       <div style={{ position: "relative" }}>
         <ValidStatus>
@@ -106,6 +125,47 @@ class Index extends Component {
               </div>
             </div>
           </div>}
+
+          {showBeginUpdate && <div className='viewDetail'>
+            <div className='title'>
+              更正数据
+            </div>
+            <div>
+              <Form
+                layout='horizontal'
+                footer={
+                  <> <Button block type='submit' color='primary' size='large'>
+                    提交
+                  </Button>
+                  </>
+
+                }
+
+                onFinish={this.onFinish}
+              >
+                <Form.Header>水平布局表单</Form.Header>
+                <Form.Item
+                  name='DingZhengName'
+                  label='姓名'
+                  rules={[{ required: true, message: '姓名不能为空' }]}
+                >
+                  <Input onChange={console.log} placeholder='请输入姓名' />
+                </Form.Item>
+
+                <Form.Item
+                  name='DingZhengNumber'
+                  label='身份证号'
+                   
+                >
+                  <Input onChange={console.log} placeholder='请输身份证号' />
+                </Form.Item>
+
+
+              </Form>
+
+
+            </div>
+          </div>}
           <div>
             <Mask visible={this.state.loading} opacity='0'>
               <div style={{
@@ -127,7 +187,7 @@ class Index extends Component {
             }}>我的招生</NavBar>
             {this.state.data.length == 0 && <Empty description='暂无数据' />}
             {
-              this.state.data.map((item, index) => <StudentItem dataSource={item} viewDetail={this.viewDetail} No={index + 1} {...item}></StudentItem>)
+              this.state.data.map((item, index) => <StudentItem BeginUpdate={this.BeginUpdate} dataSource={item} viewDetail={this.viewDetail} No={index + 1} {...item}></StudentItem>)
             }
 
 

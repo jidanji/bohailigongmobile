@@ -72,7 +72,7 @@ export default class index extends Component {
 
 
             <Button size='small' color='primary' fill='none' onClick={() => {
-              router.push('/ViewDetail/' + this.props.StudentId);
+               this.props?.BeginUpdate(this.props.dataSource);
             }}>
               更正数据
             </Button>

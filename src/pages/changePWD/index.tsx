@@ -82,7 +82,7 @@ export default class index extends Component {
               <Input placeholder='请输入旧密码' clearable />
             </Form.Item>
 
-            <Form.Item label='新密码' name='newPWD' rules={[{ required: true, message: '旧密码必须输入' },
+            <Form.Item label='新密码' name='newPWD' rules={[{ required: true, message: '新密码必须输入' },
             {
               min: 6,
               type: 'string',

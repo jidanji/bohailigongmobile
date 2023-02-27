@@ -20,34 +20,44 @@ import { Badge, Space } from 'antd-mobile/2x'
 import { PullToRefresh, List, Avatar } from 'antd-mobile/2x'
 
 import { sleep } from 'antd-mobile/es/utils/sleep'
- 
+
+import { GetTotal } from '@/serivces/Students'
+
 
 
 
 export default class index extends Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { data: 0 }
+    this.state = { data: 0, total: 0 }
   }
 
   getdata = async () => {
-    
+    let total = await GetTotal({ data: {} })
+    this.setState({ total });
   }
   componentDidMount() {
     this.getdata();
   }
   render() {
+    const { total } = this.state;
     return (
       <div>
         <PullToRefresh
           onRefresh={async () => {
             await this.getdata();
-
           }}
         >
           <div id='a1' className='navContainer'>
             <div className='QuickTop'>
-              <div className='welcome'>欢迎，{localStorage.getItem("UserName")}</div>
+              <div className='welcome'>
+                <div className='first'>
+                  欢迎，{localStorage.getItem("UserName")}
+                </div>
+                <div className='second'>
+                  招生人数为: {total}
+                </div>
+              </div>
             </div>
             <div>
               <Space style={{ '--gap': '24px' }}>

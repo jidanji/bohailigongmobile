@@ -29,6 +29,16 @@ export const GengZhengStudent = (options) => {
   })
 }
 
+export const GetTotal = (options) => {
+
+  return request(`${BaseUrl}/Student/GetTotal`, {
+    method: 'POST',
+    ...options
+  })
+}
+
+
+
 
 
  

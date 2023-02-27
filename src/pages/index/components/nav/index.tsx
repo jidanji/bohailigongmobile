@@ -81,7 +81,7 @@ export default class index extends Component<any, any> {
                 <div className='navDiv'>
                   <div>
                     <img src={mima} alt="" className='navImg' onClick={() => {
-                      router.push('/MyZhaosheng');
+                      router.push('/changePWD');
                     }} />
                   </div>
                   <div>

@@ -34,6 +34,7 @@ const config: IConfig = {
         { path: '/MyZhaosheng', component: '../pages/MyZhaosheng/index' },
 
         { path: '/ViewDetail/:id', component: '../pages/ViewDetail/index' },
+        { path: '/changePWD', component: '../pages/changePWD/index' },
       ],
     },
   ],

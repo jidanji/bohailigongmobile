@@ -45,6 +45,11 @@ export default class index extends Component {
 
           <div className='updateTitle'>
             更正后的数据
+            <Button size='small' color='primary' fill='none' onClick={() => {
+              this.props?.BeginUpdate(this.props.dataSource);
+            }}>
+              更正数据
+            </Button>
           </div>
           <div className='studentName' >
             {this.props.DingZhengName || "-"}
@@ -71,11 +76,7 @@ export default class index extends Component {
             </Button>
 
 
-            <Button size='small' color='primary' fill='none' onClick={() => {
-               this.props?.BeginUpdate(this.props.dataSource);
-            }}>
-              更正数据
-            </Button>
+
           </div>
 
         </div>}

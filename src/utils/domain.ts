@@ -1,7 +1,7 @@
 import env from './env';
 
 const apiBaseUrlBase = {
-  prod: 'https://pbl.hunnu.edu.cn/Admin',
+  prod: 'http://112.126.83.123/Admin',
   development: '/api',
 };
 

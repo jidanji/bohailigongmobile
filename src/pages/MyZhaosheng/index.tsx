@@ -29,11 +29,11 @@ class Index extends Component {
 
     try {
       await GengZhengStudent({ data: { DingZhengName, DingZhengNumber, StudentId } })
-      
+
     }
 
     catch { }
-    finally { this.setState({showBeginUpdate:false})}
+    finally { this.setState({ showBeginUpdate: false }) }
 
 
   }
@@ -43,9 +43,7 @@ class Index extends Component {
       <div style={{ position: "relative" }}>
         <ValidStatus>
           {showDetail && <div className='viewDetail'>
-            <div className='title'>
-              学生信息详情
-            </div>
+
             <div className="content">
               <div className='item'>
                 <div className='itemTitle'>学生姓名</div>
@@ -120,7 +118,7 @@ class Index extends Component {
 
                   this.setState({ showDetail: false })
                 }}>
-                  退出详情
+                  关闭
                 </Button>
               </div>
             </div>
@@ -134,28 +132,25 @@ class Index extends Component {
               <Form
                 layout='horizontal'
                 footer={
-                  <> <Button block type='submit' color='primary' size='large'>
+                  <> <Button block type='submit' color='primary' size='middle'>
                     提交
                   </Button>
                   </>
-
                 }
-
                 onFinish={this.onFinish}
               >
-                <Form.Header>水平布局表单</Form.Header>
                 <Form.Item
                   name='DingZhengName'
                   label='姓名'
                   rules={[{ required: true, message: '姓名不能为空' }]}
                 >
-                  <Input onChange={console.log} placeholder='请输入姓名' />
+                  <Input onChange={console.log} placeholder='请输入姓名' value=''/>
                 </Form.Item>
 
                 <Form.Item
                   name='DingZhengNumber'
                   label='身份证号'
-                   
+
                 >
                   <Input onChange={console.log} placeholder='请输身份证号' />
                 </Form.Item>

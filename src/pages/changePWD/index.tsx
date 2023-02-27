@@ -4,7 +4,8 @@ import {
   Input,
   Button,
   Card, Toast,
-  NavBar
+  NavBar,
+  Dialog
 } from 'antd-mobile/2x';
 import './index.less'
 import Title from '@/components/Title'
@@ -21,15 +22,24 @@ export default class index extends Component {
     try {
       this.setState({ loading: true })
       await ChangePWD({ data: values });
-      this.setState({ loading: false }, () => {
-        router.push('/')
-      })
+
+      Dialog.alert({
+        content: '密码修改完成',
+        onConfirm: () => {
+          this.setState({ loading: false }, () => {
+            router.push('/')
+          })
+        },
+      });
+
+
     } catch (err) {
       this.setState({ loading: false, UserAccount: "", UserPwd: "" })
-      Toast.show({
+      Dialog.alert({
         content: err?.message || err || "出错了",
-        position: 'top',
-      })
+        onConfirm: () => {
+        },
+      });
     }
 
   }

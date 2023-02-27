@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './index.less';
 
 import StudentItem from './components/StudentItem';
-import { Empty, Mask, NavBar, SpinLoading, Button, Form, Input, TextArea, Space } from 'antd-mobile/2x';
+import { Empty, Mask, NavBar, SpinLoading, Button, Form, Input, TextArea, Space,Toast } from 'antd-mobile/2x';
 import router from 'umi/router';
 
 import { StudentGetData, GengZhengStudent } from '@/serivces/Students';
@@ -15,7 +15,14 @@ class Index extends Component {
   formRef = React.createRef<FormInstance>()
   constructor(props) {
     super(props);
-    this.state = { data: [], loading: false, showDetail: false, currentStuent: {}, showBeginUpdate: false };
+    this.state = {
+      data: [],
+      loading: false,
+      showDetail: false,
+      currentStuent: {},
+      showBeginUpdate: false,
+      gengzhengStatus: false
+    };
   }
 
 
@@ -35,6 +42,7 @@ class Index extends Component {
     let [{ DingZhengName, DingZhengNumber }, { StudentId }] = [values, this.state.currentStuent];
 
     try {
+      this.setState({ gengzhengStatus: true })
       await GengZhengStudent({ data: { DingZhengName, DingZhengNumber, StudentId } })
 
       this.setState(
@@ -49,15 +57,22 @@ class Index extends Component {
 
         })
       );
+      this.setState({ showBeginUpdate: false })
+      Toast.show({
+        icon: 'success',
+        content: '数据更正成功',
+      })
     }
 
     catch { }
-    finally { this.setState({ showBeginUpdate: false }) }
+    finally {
+      this.setState({ gengzhengStatus: false })
+    }
 
 
   }
   render() {
-    const { showDetail, currentStuent, showBeginUpdate } = this.state;
+    const { showDetail, currentStuent, showBeginUpdate, gengzhengStatus } = this.state;
     return (
       <div style={{ position: "relative" }}>
         <ValidStatus>
@@ -152,10 +167,10 @@ class Index extends Component {
                 ref={this.formRef}
                 layout='horizontal'
                 footer={
-                  <> <Button block type='submit' color='primary' size='middle' style={{ marginBottom: "15px" }}>
+                  <> <Button loading={gengzhengStatus} block type='submit' color='primary' size='middle' style={{ marginBottom: "15px" }}>
                     提交
                   </Button>
-                    <Button block color='primary' fill='outline' size='middle' onClick={() => {
+                    <Button loading={gengzhengStatus} block color='primary' fill='outline' size='middle' onClick={() => {
                       this.setState({ showBeginUpdate: false })
                     }}>
                       取消

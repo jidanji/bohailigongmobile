@@ -38,7 +38,7 @@ export default class index extends Component {
           </div>
           <div className='d2' style={{ display: "flex" }}>
             <div className='studentType'>
-              录入时间 ： {this.props.InsertTime && datetimeFormate(this.props.InsertTime)} 
+              录入时间 ： {this.props.InsertTime && datetimeFormate(this.props.InsertTime)}
             </div>
 
           </div>
@@ -48,7 +48,9 @@ export default class index extends Component {
             {this.props.No && this.props.No}
           </div>
           <Button size='small' color='primary' fill='none' onClick={() => {
-            router.push('/ViewDetail/' + this.props.StudentId);
+
+            this.props?.viewDetail(this.props.dataSource);
+
           }}>
             详情
           </Button>

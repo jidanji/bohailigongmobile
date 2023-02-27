@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './index.less';
 
 import StudentItem from './components/StudentItem';
-import { Empty, Mask, NavBar, SpinLoading, Button, Form, Input, TextArea, Space,Toast } from 'antd-mobile/2x';
+import { Empty, Mask, NavBar, SpinLoading, Button, Form, Input, TextArea, Space, Toast } from 'antd-mobile/2x';
 import router from 'umi/router';
 
 import { StudentGetData, GengZhengStudent } from '@/serivces/Students';
@@ -10,6 +10,8 @@ import { StudentGetData, GengZhengStudent } from '@/serivces/Students';
 import ValidStatus from '@/components/ValidStatus';
 
 import { produce, enableES5 } from 'immer';
+
+import moment from 'moment'
 
 class Index extends Component {
   formRef = React.createRef<FormInstance>()
@@ -52,9 +54,10 @@ class Index extends Component {
           if (ret.length) {
             ret[0].DingZhengName = DingZhengName;
             ret[0].DingZhengNumber = DingZhengNumber;
+            let a = `/Date(${moment().valueOf()})/`;
+
+            ret[0].DingZhengUpdateTime = a
           }
-
-
         })
       );
       this.setState({ showBeginUpdate: false })

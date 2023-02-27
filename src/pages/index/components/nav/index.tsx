@@ -73,7 +73,7 @@ export default class index extends Component<any, any> {
                     <img src={tuandui} alt="" className='navImg' />
                   </div>
                   <div>
-                    我的招生报表
+                    我的招生
                   </div>
                 </div>
 

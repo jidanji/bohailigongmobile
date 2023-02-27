@@ -54,9 +54,18 @@ export default class index extends Component {
     router.push('/TeacherReg')
   }
   async componentDidMount() {
+
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+
+    } else {
+      window.location.href = 'http://112.126.83.123/admin/login'
+    }
     const data = await LogOut({ data: {}, headers: { 'X-Requested-With': 'XMLHttpRequest' } });
     console.log(data)
   }
+
+
 
   render() {
     return (

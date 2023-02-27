@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Result, Button,DotLoading } from 'antd-mobile/2x'
+import { Result, Button, DotLoading } from 'antd-mobile/2x'
 
 import { LoginStatus } from '@/serivces/login'
 
@@ -14,6 +14,10 @@ class Index extends Component {
   }
 
   async componentDidMount() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    } else {
+      window.location.href = 'http://112.126.83.123/admin/login'
+    }
     try {
       let { UserName, UserAccount } = await LoginStatus();
       localStorage.setItem('UserName', UserName)
@@ -35,7 +39,7 @@ class Index extends Component {
   render() {
     // @ts-ignore
     const { loginStatus } = this.state;
-   
+
 
 
 

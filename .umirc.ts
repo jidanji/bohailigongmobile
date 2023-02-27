@@ -15,10 +15,6 @@ const config: IConfig = {
   treeShaking: true,
   routes: [
     {
-      path: '/insertEv',
-      component: '../pages/insertEv/index',
-    },
-    {
       path: '/login',
       component: '../pages/login/index',
     },
@@ -29,11 +25,7 @@ const config: IConfig = {
       component: '../layouts/index',
       routes: [
         { path: '/', component: '../pages/index/index' },
-        { path: '/EvaluateStudentList', component: '../pages/EvaluateStudentList/index' },
-        { path: '/Start/:id', component: '../pages/Start/index' },
         { path: '/MyZhaosheng', component: '../pages/MyZhaosheng/index' },
-
-        { path: '/ViewDetail/:id', component: '../pages/ViewDetail/index' },
         { path: '/changePWD', component: '../pages/changePWD/index' },
       ],
     },

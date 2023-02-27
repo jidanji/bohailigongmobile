@@ -66,11 +66,11 @@ export default class index extends Component<any, any> {
 
 
 
-                <div className='navDiv'>
+                <div className='navDiv' onClick={() => {
+                  router.push('/MyZhaosheng');
+                }}>
                   <div>
-                    <img src={tuandui} alt="" className='navImg' onClick={() => {
-                      router.push('/MyZhaosheng');
-                    }} />
+                    <img src={tuandui} alt="" className='navImg' />
                   </div>
                   <div>
                     我的招生报表
@@ -78,11 +78,11 @@ export default class index extends Component<any, any> {
                 </div>
 
 
-                <div className='navDiv'>
+                <div className='navDiv' onClick={() => {
+                  router.push('/changePWD');
+                }}>
                   <div>
-                    <img src={mima} alt="" className='navImg' onClick={() => {
-                      router.push('/');
-                    }} />
+                    <img src={mima} alt="" className='navImg' />
                   </div>
                   <div>
                     修改密码

@@ -40,7 +40,7 @@ export default class index extends Component {
         <NavBar style={{
           position: '-webkit-sticky', position: 'sticky', top: 0,
           backgroundColor: 'rgb(245, 247, 250)', zIndex: '9999',
-        }} onBack={() => { router.push('/login') }}>修改密码</NavBar>
+        }} onBack={() => { router.push('/') }}>修改密码</NavBar>
         <Form
           className='FormDiv'
           layout='horizontal'

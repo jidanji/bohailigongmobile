@@ -42,25 +42,42 @@ export default class index extends Component {
             </div>
 
           </div>
+
+          <div className='updateTitle'>
+            更正后的数据
+          </div>
+          <div className='studentName' >
+            {this.props.DingZhengName || "-"}
+          </div>
+
+          <div className='studentName' >
+            {this.props.DingZhengNumber || "-"}
+          </div>
+          <div className='studentName' >
+            {this.props.DingZhengUpdateTime && datetimeFormate(this.props.DingZhengUpdateTime) || "-"}
+          </div>
         </div>
-        {!!!this.props.noDetailButton && <div className='secondDiv'>
+        {<div className='secondDiv'>
           <div className='steps'>
             {this.props.No && this.props.No}
           </div>
-          <Button size='small' color='primary' fill='none' onClick={() => {
+          <div className='toolBar'>
+            <Button size='small' color='primary' fill='none' onClick={() => {
 
-            this.props?.viewDetail(this.props.dataSource);
+              this.props?.viewDetail(this.props.dataSource);
 
-          }}>
-            详情
-          </Button>
+            }}>
+              详情
+            </Button>
 
 
-          <Button size='small' color='primary' fill='none' onClick={() => {
-            router.push('/ViewDetail/' + this.props.StudentId);
-          }}>
-            更正数据
-          </Button>
+            <Button size='small' color='primary' fill='none' onClick={() => {
+              router.push('/ViewDetail/' + this.props.StudentId);
+            }}>
+              更正数据
+            </Button>
+          </div>
+
         </div>}
       </div>
     )

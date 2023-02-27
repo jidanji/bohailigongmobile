@@ -19,11 +19,11 @@ const config: IConfig = {
       component: '../pages/login/index',
     },
 
-    { path: '/InsertStudent', component: '../pages/InsertStudent/index' },
     {
       path: '/',
       component: '../layouts/index',
       routes: [
+        { path: '/InsertStudent', component: '../pages/InsertStudent/index' },
         { path: '/', component: '../pages/index/index' },
         { path: '/MyZhaosheng', component: '../pages/MyZhaosheng/index' },
         { path: '/changePWD', component: '../pages/changePWD/index' },

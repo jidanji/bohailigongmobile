@@ -17,7 +17,7 @@ import './index.less'
 
 import { Badge, Space } from 'antd-mobile/2x'
 
-import { PullToRefresh, List, Avatar } from 'antd-mobile/2x'
+import { PullToRefresh, List, Avatar, NoticeBar } from 'antd-mobile/2x'
 
 import { sleep } from 'antd-mobile/es/utils/sleep'
 
@@ -25,7 +25,7 @@ import { GetTotal } from '@/serivces/Students'
 
 import PClogo from '@/assets/PClogo.png'
 
-import av from '@/assets/av.png'
+
 
 export default class index extends Component<any, any> {
   constructor(props: any) {
@@ -46,80 +46,84 @@ export default class index extends Component<any, any> {
     const { total = 0 } = this.state;
     return (
       <div>
-        <PullToRefresh
-          onRefresh={async () => {
-            await this.getdata();
-          }}
-        >
-          <div id='a1' className='navContainer'>
-            <div className='QuickTop'>
+        <>
+          <NoticeBar content='招生活动进行中......' color='info' closeable />
+          <PullToRefresh
+            onRefresh={async () => {
+              await this.getdata();
+            }}
+          >
+            <div id='a1' className='navContainer'>
+              <div className='QuickTop'>
 
-              <div className='first'>
-                <Avatar style={{ '--size': '40px' }} />
-                <div className='userName'>
-                  {localStorage.getItem("UserName")}
+                <div className='first'>
+                  <Avatar style={{ '--size': '40px' }} />
+                  <div className='userName'>
+                    {localStorage.getItem("UserName")}
+                  </div>
+                </div>
+                <div className='second'>
+                  <div className='mylabel'>
+                    我的招生人数
+                  </div>
+                  <div className='valye'>
+                    {total}
+                  </div>
+                </div>
+
+              </div>
+              <div>
+                <Space style={{ '--gap': '24px' }}>
+                  <div className='navDiv' onClick={() => { router.push('/InsertStudent'); }}>
+
+                    <div>
+                      <img src={pc} alt="" className='navImg' />
+                    </div>
+
+                    <div>
+                      招生录入
+                    </div>
+                  </div>
+
+
+
+                  <div className='navDiv' onClick={() => {
+                    router.push('/MyZhaosheng');
+                  }}>
+                    <div>
+                      <img src={tuandui} alt="" className='navImg' />
+                    </div>
+                    <div>
+                      我的招生
+                    </div>
+                  </div>
+
+
+                  <div className='navDiv' onClick={() => {
+                    router.push('/changePWD');
+                  }}>
+                    <div>
+                      <img src={mima} alt="" className='navImg' />
+                    </div>
+                    <div>
+                      修改密码
+                    </div>
+                  </div>
+
+
+                </Space>
+
+                <div className='pcmore'>
+                  <img src={PClogo} alt="" />
+                  <div>
+                    更多功能，请登录电脑端
+                  </div>
                 </div>
               </div>
-              <div className='second'>
-                <div className='mylabel'>
-                  我的招生人数
-                </div>
-                <div className='valye'>
-                  {total}
-                </div>
-              </div>
-
             </div>
-            <div>
-              <Space style={{ '--gap': '24px' }}>
-                <div className='navDiv' onClick={() => { router.push('/InsertStudent'); }}>
+          </PullToRefresh>
+        </>
 
-                  <div>
-                    <img src={pc} alt="" className='navImg' />
-                  </div>
-
-                  <div>
-                    招生录入
-                  </div>
-                </div>
-
-
-
-                <div className='navDiv' onClick={() => {
-                  router.push('/MyZhaosheng');
-                }}>
-                  <div>
-                    <img src={tuandui} alt="" className='navImg' />
-                  </div>
-                  <div>
-                    我的招生
-                  </div>
-                </div>
-
-
-                <div className='navDiv' onClick={() => {
-                  router.push('/changePWD');
-                }}>
-                  <div>
-                    <img src={mima} alt="" className='navImg' />
-                  </div>
-                  <div>
-                    修改密码
-                  </div>
-                </div>
-
-
-              </Space>
-
-              <div className='pcmore'>
-                <img src={PClogo} alt="" />
-                <div>
-                  更多功能，请登录电脑端
-                </div>
-              </div>
-            </div>
-          </div>
-        </PullToRefresh>
 
 
       </div>

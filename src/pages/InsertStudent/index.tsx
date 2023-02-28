@@ -351,9 +351,9 @@ class index extends Component<any, any> {
             <Input placeholder='请输入联系方式' clearable />
           </Form.Item>
 
-          <Form.Item label='学生性质' name='StudentType' rules={[{ required: true }]}>
+          <Form.Item label='学生性质（单选）' name='StudentType' rules={[{ required: true }]}>
             <Selector
-              columns={2}
+              columns={1}
               options={
                 groupArr
               }

@@ -23,8 +23,9 @@ import { sleep } from 'antd-mobile/es/utils/sleep'
 
 import { GetTotal } from '@/serivces/Students'
 
+import PClogo from '@/assets/PClogo.png'
 
-
+import av from '@/assets/av.png'
 
 export default class index extends Component<any, any> {
   constructor(props: any) {
@@ -35,14 +36,14 @@ export default class index extends Component<any, any> {
   getdata = async () => {
     let total = await GetTotal({ data: {} })
 
-   
+
     this.setState({ total });
   }
   componentDidMount() {
     this.getdata();
   }
   render() {
-    const { total=0 } = this.state;
+    const { total = 0 } = this.state;
     return (
       <div>
         <PullToRefresh
@@ -52,14 +53,22 @@ export default class index extends Component<any, any> {
         >
           <div id='a1' className='navContainer'>
             <div className='QuickTop'>
-              <div className='welcome'>
-                <div className='first'>
-                  欢迎，{localStorage.getItem("UserName")}
-                </div>
-                <div className='second'>
-                  招生人数为: {total}
+
+              <div className='first'>
+                <Avatar style={{ '--size': '40px' }} />
+                <div className='userName'>
+                  {localStorage.getItem("UserName")}
                 </div>
               </div>
+              <div className='second'>
+                <div className='mylabel'>
+                  我的招生人数
+                </div>
+                <div className='valye'>
+                  {total}
+                </div>
+              </div>
+
             </div>
             <div>
               <Space style={{ '--gap': '24px' }}>
@@ -101,6 +110,13 @@ export default class index extends Component<any, any> {
 
 
               </Space>
+
+              <div className='pcmore'>
+                <img src={PClogo} alt="" />
+                <div>
+                  更多功能，请登录电脑端
+                </div>
+              </div>
             </div>
           </div>
         </PullToRefresh>

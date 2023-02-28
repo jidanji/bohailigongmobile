@@ -5,7 +5,7 @@ import Nav from './components/nav'
 
 import Title from '@/components/Title'
 import ValidStatus from '@/components/ValidStatus';
-import { Button } from 'antd-mobile/2x';
+import { Button, NavBar } from 'antd-mobile/2x';
 import router from 'umi/router';
 
 
@@ -14,15 +14,22 @@ export default function () {
 
   return (
     <div>
-      <Title>导航窗口</Title>
+      <NavBar style={{
+        position: '-webkit-sticky', position: 'sticky', top: 0,
+        backgroundColor: 'rgb(245, 247, 250)', zIndex: '9999',
+      }} back={null}>渤海理工职业学院招生综合管理系统</NavBar>
+
 
       <ValidStatus>
-        <Nav />
-        <div style={{padding:40}}>
-          <Button block type='submit' color='primary' onClick={()=>{  router.push('/Login')}}>
-            退出登录
-          </Button>
+        <div style={{background:'#fff'}}>
+          <Nav />
+          <div style={{ padding: 40 }}>
+            <Button block type='submit' size='middle' color='primary' onClick={() => { router.push('/Login') }}>
+              退出登录
+            </Button>
+          </div>
         </div>
+
       </ValidStatus>
     </div>
   );

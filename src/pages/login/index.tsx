@@ -90,7 +90,7 @@ export default class index extends Component {
 
           </div>
           <div className='systemName'>
-            招生综合管理系统
+            招生综合管理系统移动版
           </div>
 
 

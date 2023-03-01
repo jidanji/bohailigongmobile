@@ -80,7 +80,7 @@ class index extends Component<any, any> {
     const { zhuanyeDict } = this.state;
 
     return (
-      <div>
+      <div className='InsertStudent'>
 
         <NavBar style={{
           position: '-webkit-sticky', position: 'sticky', top: 0,
@@ -104,7 +104,7 @@ class index extends Component<any, any> {
             className='FormDiv'
             layout='horizontal'
             footer={
-              <div>
+              <div className='footer'>
                 <Button block type='submit' color='primary' size='large'>
                   保存
                 </Button>

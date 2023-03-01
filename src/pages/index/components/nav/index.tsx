@@ -19,18 +19,42 @@ import { Badge, Space } from 'antd-mobile/2x'
 
 import { PullToRefresh, List, Avatar, NoticeBar } from 'antd-mobile/2x'
 
-import { sleep } from 'antd-mobile/es/utils/sleep'
+
 
 import { GetTotal } from '@/serivces/Students'
 
 import PClogo from '@/assets/PClogo.png'
 
-
+import { SysSettingGetData } from '@/serivces/SysSetting'
 
 export default class index extends Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = { data: 0, total: 0 }
+    this.state = {
+      data: 0, total: 0,
+      SysBaoMingStatus: 0,
+      danzhaoStatus: false,
+      shengwaiStatus: false,
+      tongzhaoStatus: false,
+      zhongzhuanStatus: false
+    }
+
+
+  }
+
+  initSysSettingGetData = async () => {
+    try {
+      let data = await SysSettingGetData({ data: {} });
+      const { SysBaoMingStatus = false, danzhaoStatus = false, shengwaiStatus = false, tongzhaoStatus = false, zhongzhuanStatus = false } = data;
+      this.setState({
+        SysBaoMingStatus, danzhaoStatus, shengwaiStatus, tongzhaoStatus, zhongzhuanStatus
+      });
+    }
+    catch {
+      this.setState({
+        SysBaoMingStatus: false, danzhaoStatus: false, shengwaiStatus: false, tongzhaoStatus: false, zhongzhuanStatus: false
+      });
+    }
   }
 
   getdata = async () => {
@@ -41,16 +65,20 @@ export default class index extends Component<any, any> {
   }
   componentDidMount() {
     this.getdata();
+    this.initSysSettingGetData();
   }
   render() {
     const { total = 0 } = this.state;
+    const { SysBaoMingStatus = 0, danzhaoStatus = false, shengwaiStatus = false, tongzhaoStatus = false, zhongzhuanStatus = false } = this.state;
     return (
       <div>
         <>
-          <NoticeBar content='招生活动进行中......' color='info' closeable />
+          {(!!SysBaoMingStatus) && ((!!danzhaoStatus) || (!!shengwaiStatus) || (!!tongzhaoStatus) || (!!zhongzhuanStatus)) && < NoticeBar content='招生活动进行中......' color='info' closeable />}
+          {!((!!SysBaoMingStatus) && ((!!danzhaoStatus) || (!!shengwaiStatus) || (!!tongzhaoStatus) || (!!zhongzhuanStatus)) )&&<NoticeBar content='当前时间不在任何招生时段' color='alert' closeable />}
           <PullToRefresh
             onRefresh={async () => {
               await this.getdata();
+              await this.initSysSettingGetData();
             }}
           >
             <div id='a1' className='navContainer'>

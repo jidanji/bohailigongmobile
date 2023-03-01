@@ -420,13 +420,12 @@ class index extends Component<any, any> {
       this.setState({
         SysBaoMingStatus, danzhaoStatus, shengwaiStatus, tongzhaoStatus, zhongzhuanStatus
       });
-
     }
     catch {
-
+      this.setState({
+        SysBaoMingStatus: false, danzhaoStatus: false, shengwaiStatus: false, tongzhaoStatus: false, zhongzhuanStatus: false
+      });
     }
-
-
   }
 
 

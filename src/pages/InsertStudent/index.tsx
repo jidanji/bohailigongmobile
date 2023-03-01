@@ -105,7 +105,7 @@ class index extends Component<any, any> {
             layout='horizontal'
             footer={
               <div className='footer'>
-                <Button block type='submit' color='primary' size='large'>
+                <Button block type='submit' color='primary' size='middle'>
                   保存
                 </Button>
               </div>

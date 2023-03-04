@@ -23,65 +23,66 @@ export default class index extends Component {
 
     return (
       <div className='testItemContainer'>
-        <div className='firstDiv'>
-          <div className='d1' style={{}}>
+        <div>
+          <div className='firstDiv'>
+            <div className='d1' style={{}}>
 
-            <div className='studentName' >
-              {this.props.StudentName}
+              <div className='studentName' >
+                {this.props.StudentName}
 
-              <div className='toolBar'>
-                <Button size='small' color='primary' fill='none' onClick={() => {
+                <div className='toolBar'>
+                  <Button size='small' color='primary' fill='none' onClick={() => {
 
-                  this.props?.viewDetail(this.props.dataSource);
+                    this.props?.viewDetail(this.props.dataSource);
 
-                }}>
-                  详情
-                </Button>
+                  }}>
+                    详情
+                  </Button>
 
 
 
+                </div>
               </div>
+
+              <div className='studentName' >
+                {this.props.StudentIDCard}
+              </div>
+
+
+            </div>
+            <div className='d2' style={{ display: "flex" }}>
+              <div className='studentType'>
+                录入时间 ： {this.props.InsertTime && datetimeFormate(this.props.InsertTime)}
+              </div>
+
+            </div>
+
+            <div className='updateTitle'>
+              更正后的数据
+              <Button size='small' color='primary' fill='none' onClick={() => {
+                this.props?.BeginUpdate(this.props.dataSource);
+              }}>
+                更正数据
+              </Button>
+            </div>
+            <div className='studentName' >
+              {this.props.DingZhengName || "-"}
             </div>
 
             <div className='studentName' >
-              {this.props.StudentIDCard}
+              {this.props.DingZhengNumber || "-"}
             </div>
-
-
-          </div>
-          <div className='d2' style={{ display: "flex" }}>
-            <div className='studentType'>
-              录入时间 ： {this.props.InsertTime && datetimeFormate(this.props.InsertTime)}
+            <div className='studentName' >
+              {this.props.DingZhengUpdateTime && datetimeFormate(this.props.DingZhengUpdateTime) || "-"}
             </div>
-
           </div>
-
-          <div className='updateTitle'>
-            更正后的数据
-            <Button size='small' color='primary' fill='none' onClick={() => {
-              this.props?.BeginUpdate(this.props.dataSource);
-            }}>
-              更正数据
-            </Button>
-          </div>
-          <div className='studentName' >
-            {this.props.DingZhengName || "-"}
-          </div>
-
-          <div className='studentName' >
-            {this.props.DingZhengNumber || "-"}
-          </div>
-          <div className='studentName' >
-            {this.props.DingZhengUpdateTime && datetimeFormate(this.props.DingZhengUpdateTime) || "-"}
+          <div className='secondDiv'>
+            <div className='steps'>
+              {this.props.No}
+            </div>
           </div>
         </div>
-        {<div className='secondDiv'>
-          <div className='steps'>
-            {this.props.No && this.props.No}
-          </div>
 
-
-        </div>}
       </div>
     )
   }

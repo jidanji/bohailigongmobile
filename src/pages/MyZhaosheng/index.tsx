@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './index.less';
 
 import StudentItem from './components/StudentItem';
-import { Empty, Mask, NavBar, SpinLoading, Button, Form, Input, TextArea, Space, Toast } from 'antd-mobile/2x';
+import { Empty, Mask, NavBar, SpinLoading, Button, Form, Input, TextArea, Space, Toast, InfiniteScroll } from 'antd-mobile/2x';
 import router from 'umi/router';
 
 import { StudentGetData, GengZhengStudent } from '@/serivces/Students';
@@ -23,7 +23,10 @@ class Index extends Component {
       showDetail: false,
       currentStuent: {},
       showBeginUpdate: false,
-      gengzhengStatus: false
+      gengzhengStatus: false,
+      hasMore: true,
+      current: 1,
+      length: 100
     };
   }
 
@@ -74,8 +77,16 @@ class Index extends Component {
 
 
   }
+
+  loadMore = () => {
+    let { current = 1, length = 20 } = this.state;
+    current += 1;
+    this.setState({ current }, () => { this.getdata() })
+  }
+
+
   render() {
-    const { showDetail, currentStuent, showBeginUpdate, gengzhengStatus } = this.state;
+    const { showDetail, currentStuent, showBeginUpdate, gengzhengStatus, hasMore } = this.state;
     return (
       <div style={{ position: "relative" }}>
         <ValidStatus>
@@ -227,7 +238,7 @@ class Index extends Component {
               this.state.data.map((item, index) => <StudentItem BeginUpdate={this.BeginUpdate} dataSource={item} viewDetail={this.viewDetail} No={index + 1} {...item}></StudentItem>)
             }
 
-
+            <InfiniteScroll loadMore={this.loadMore} hasMore={hasMore} />
           </div>
         </ValidStatus>
       </div>
@@ -239,15 +250,16 @@ class Index extends Component {
 
 
   getdata = async () => {
+    const { current = 1, length = 20 } = this.state;
     try {
       this.setState({ loading: true })
-      const data = await StudentGetData({ data: { draw: 1, start: 0, length: 1000 } });
-      this.setState({ data, loading: false });
+      const data = await StudentGetData({ data: { draw: 1, start: (current - 1) * length, length } });
+      let hasMore = data.length < length ? false : true;
+      this.setState({ data: [...(this.state.data || []), ...data], loading: false, hasMore });
     } catch (err) {
       console.log(err);
       this.setState({ loading: false })
     }
-
   };
 
   componentDidMount() {

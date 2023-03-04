@@ -28,6 +28,19 @@ export default class index extends Component {
 
             <div className='studentName' >
               {this.props.StudentName}
+
+              <div className='toolBar'>
+                <Button size='small' color='primary' fill='none' onClick={() => {
+
+                  this.props?.viewDetail(this.props.dataSource);
+
+                }}>
+                  详情
+                </Button>
+
+
+
+              </div>
             </div>
 
             <div className='studentName' >
@@ -66,18 +79,7 @@ export default class index extends Component {
           <div className='steps'>
             {this.props.No && this.props.No}
           </div>
-          <div className='toolBar'>
-            <Button size='small' color='primary' fill='none' onClick={() => {
 
-              this.props?.viewDetail(this.props.dataSource);
-
-            }}>
-              详情
-            </Button>
-
-
-
-          </div>
 
         </div>}
       </div>

@@ -36,7 +36,8 @@ export default class index extends Component<any, any> {
       danzhaoStatus: false,
       shengwaiStatus: false,
       tongzhaoStatus: false,
-      zhongzhuanStatus: false
+      zhongzhuanStatus: false,
+      gaokaofudaobanStatus: false
     }
 
 
@@ -45,14 +46,24 @@ export default class index extends Component<any, any> {
   initSysSettingGetData = async () => {
     try {
       let data = await SysSettingGetData({ data: {} });
-      const { SysBaoMingStatus = false, danzhaoStatus = false, shengwaiStatus = false, tongzhaoStatus = false, zhongzhuanStatus = false } = data;
+      const { SysBaoMingStatus = false, danzhaoStatus = false, shengwaiStatus = false, tongzhaoStatus = false, zhongzhuanStatus = false, gaokaofudaobanStatus = false } = data;
       this.setState({
-        SysBaoMingStatus, danzhaoStatus, shengwaiStatus, tongzhaoStatus, zhongzhuanStatus
+        SysBaoMingStatus,
+        danzhaoStatus,
+        shengwaiStatus,
+        tongzhaoStatus,
+        zhongzhuanStatus,
+        gaokaofudaobanStatus
       });
     }
     catch {
       this.setState({
-        SysBaoMingStatus: false, danzhaoStatus: false, shengwaiStatus: false, tongzhaoStatus: false, zhongzhuanStatus: false
+        SysBaoMingStatus: false,
+        danzhaoStatus: false,
+        shengwaiStatus: false,
+        tongzhaoStatus: false,
+        zhongzhuanStatus: false,
+        gaokaofudaobanStatus: false
       });
     }
   }
@@ -69,12 +80,12 @@ export default class index extends Component<any, any> {
   }
   render() {
     const { total = 0 } = this.state;
-    const { SysBaoMingStatus = 0, danzhaoStatus = false, shengwaiStatus = false, tongzhaoStatus = false, zhongzhuanStatus = false } = this.state;
+    const { SysBaoMingStatus = 0, danzhaoStatus = false, shengwaiStatus = false, tongzhaoStatus = false, zhongzhuanStatus = false, gaokaofudaobanStatus = false } = this.state;
     return (
       <div>
         <>
-          {(!!SysBaoMingStatus) && ((!!danzhaoStatus) || (!!shengwaiStatus) || (!!tongzhaoStatus) || (!!zhongzhuanStatus)) && < NoticeBar content='招生活动进行中......' color='info' closeable />}
-          {!((!!SysBaoMingStatus) && ((!!danzhaoStatus) || (!!shengwaiStatus) || (!!tongzhaoStatus) || (!!zhongzhuanStatus)) )&&<NoticeBar content='当前时间不在任何招生时段' color='alert' closeable />}
+          {(!!SysBaoMingStatus) && ((!!danzhaoStatus) || (!!shengwaiStatus) || (!!tongzhaoStatus) || (!!zhongzhuanStatus) || (!!gaokaofudaobanStatus)) && < NoticeBar content='招生活动进行中......' color='info' closeable />}
+          {!((!!SysBaoMingStatus) && ((!!danzhaoStatus) || (!!shengwaiStatus) || (!!tongzhaoStatus) || (!!zhongzhuanStatus) || (!!gaokaofudaobanStatus))) && <NoticeBar content='当前时间不在任何招生时段' color='alert' closeable />}
           <PullToRefresh
             onRefresh={async () => {
               await this.getdata();

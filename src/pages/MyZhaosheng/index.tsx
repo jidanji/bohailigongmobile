@@ -258,7 +258,7 @@ class Index extends Component {
       this.setState({ data: [...(this.state.data || []), ...data], loading: false, hasMore });
     } catch (err) {
       console.log(err);
-      this.setState({ loading: false })
+      this.setState({ loading: false, hasMore: false })
     }
   };
 

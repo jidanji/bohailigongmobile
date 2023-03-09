@@ -15,7 +15,7 @@ import { ValidUser, LogOut } from '@/serivces/login'
 
 import Cookies from 'js-cookie'
 
-import NoWeChat from '@/components/NoWeChat'
+
 
 
 export default class index extends Component {
@@ -45,7 +45,6 @@ export default class index extends Component {
 
   state = {
     loading: false,
-    isWX: false
   }
   forgetPWD = () => {
     router.push('/ForgetPWD')
@@ -65,9 +64,7 @@ export default class index extends Component {
       window.location.href = 'http://112.126.83.123/admin/login'
     }
 
-    if (/MicroMessenger/i.test(navigator.userAgent)) {
-      this.setState({ isWX: true });
-    }
+
 
 
 
@@ -78,10 +75,10 @@ export default class index extends Component {
 
 
   render() {
-    const { isWX } = this.state;
+
     return (
       <>
-        {!isWX && <div className='loginContainer'>
+        {<div className='loginContainer'>
 
           <div className='logoDiv'>
             <div>
@@ -128,9 +125,7 @@ export default class index extends Component {
             版权所有 2023-2023
           </div>
         </div >}
-        {
-          isWX && <NoWeChat/>
-        }
+
       </>
 
     )

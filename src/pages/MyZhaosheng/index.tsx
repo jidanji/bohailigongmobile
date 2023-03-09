@@ -254,7 +254,7 @@ class Index extends Component {
     try {
       this.setState({ loading: true })
       const data = await StudentGetData({ data: { draw: 1, start: (current - 1) * length, length } });
-      let hasMore = data.length < length ? false : true;
+      let hasMore = !!data.length ? (data.length < length ? false : true) : false;
       this.setState({ data: [...(this.state.data || []), ...data], loading: false, hasMore });
     } catch (err) {
       console.log(err);

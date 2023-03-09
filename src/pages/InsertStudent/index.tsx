@@ -54,8 +54,14 @@ class index extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      zhuanyeDict: [], loading: false,
-      SysBaoMingStatus: 0, danzhaoStatus: false, shengwaiStatus: false, tongzhaoStatus: false, zhongzhuanStatus: false
+      zhuanyeDict: [],
+      loading: false,
+      SysBaoMingStatus: 0,
+      danzhaoStatus: false,
+      shengwaiStatus: false,
+      tongzhaoStatus: false,
+      zhongzhuanStatus: false,
+      gaokaofudaobanStatus: false
 
     }
   }
@@ -65,12 +71,22 @@ class index extends Component<any, any> {
 
 
   render() {
-    const { SysBaoMingStatus = 0, danzhaoStatus = false, shengwaiStatus = false, tongzhaoStatus = false, zhongzhuanStatus = false } = this.state;
+    const { SysBaoMingStatus = 0,
+      danzhaoStatus = false,
+      shengwaiStatus = false,
+      tongzhaoStatus = false,
+      zhongzhuanStatus = false,
+      gaokaofudaobanStatus = false
+    } = this.state;
+
 
     const groupArr = ([{ GroupName: "单招", GroupId: "单招", disabled: !(!!SysBaoMingStatus && !!danzhaoStatus) },
     { GroupName: "统招", GroupId: "统招", disabled: !(!!SysBaoMingStatus && !!tongzhaoStatus) },
-    { GroupName: "中专和五年一贯制", GroupId: "中专和五年一贯制", disabled: !(!!SysBaoMingStatus && !!zhongzhuanStatus) },
-    { GroupName: "省外招生录入", GroupId: "省外招生录入", disabled: !(!!SysBaoMingStatus && !!shengwaiStatus) }
+    { GroupName: "五年一贯制", GroupId: "五年一贯制", disabled: !(!!SysBaoMingStatus && !!zhongzhuanStatus) },
+    { GroupName: "省外招生录入", GroupId: "省外招生录入", disabled: !(!!SysBaoMingStatus && !!shengwaiStatus) },
+    { GroupName: "高考辅导班", GroupId: "高考辅导班", disabled: !(!!SysBaoMingStatus && !!gaokaofudaobanStatus) }
+
+
     ]).map(item => {
       return {
         label: item.GroupName, value: item.GroupId, disabled: item.disabled
@@ -416,9 +432,9 @@ class index extends Component<any, any> {
   initSysSettingGetData = async () => {
     try {
       let data = await SysSettingGetData({ data: {} });
-      const { SysBaoMingStatus = false, danzhaoStatus = false, shengwaiStatus = false, tongzhaoStatus = false, zhongzhuanStatus = false } = data;
+      const { SysBaoMingStatus = false, danzhaoStatus = false, shengwaiStatus = false, tongzhaoStatus = false, zhongzhuanStatus = false, gaokaofudaobanStatus = false } = data;
       this.setState({
-        SysBaoMingStatus, danzhaoStatus, shengwaiStatus, tongzhaoStatus, zhongzhuanStatus
+        SysBaoMingStatus, danzhaoStatus, shengwaiStatus, tongzhaoStatus, zhongzhuanStatus, gaokaofudaobanStatus
       });
     }
     catch {

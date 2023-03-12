@@ -155,7 +155,7 @@ export default class index extends Component<any, any> {
                 <div className='pcmore'>
                   <img src={PClogo} alt="" />
                   <div>
-                    更多功能，请登录电脑端
+                    使用批量数据导入，请登录电脑端
                   </div>
                 </div>
               </div>
